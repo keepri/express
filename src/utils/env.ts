@@ -6,7 +6,7 @@ const env = createEnv({
     server: {
         NODE_ENV: z.enum(["development", "production"]),
         PORT: z.coerce.number().optional(),
-        COOKIE_SECRET: z.string().optional(),
+        COOKIE_SECRET: z.string().min(1),
     },
     runtimeEnv: process.env,
 });
