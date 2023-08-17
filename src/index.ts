@@ -1,6 +1,4 @@
 import 'dotenv/config';
-// import session from 'express-session';
-import env from './utils/env.js';
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -13,6 +11,7 @@ import {
     json,
     static as staticDir,
 } from "express";
+import env from './utils/env.js';
 
 const app: Application = express();
 const PORT: number = env.PORT || 8000;
@@ -24,19 +23,8 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 app.use(cookieParser(env.COOKIE_SECRET));
 app.use("/static", staticDir("static"));
-// app.use(session({
-//     secret: env.COOKIE_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: undefined, // redis?
-//     cookie: {
-//         secure: env.NODE_ENV === "production" ? true : false,
-//         httpOnly: true,
-//     },
-// }));
 
-
-app.get("/", (_, res: Response) => {
+app.get("/", async (_, res: Response) => {
     return res.status(200).send("hi");
 });
 
