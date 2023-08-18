@@ -12,10 +12,10 @@ export const users = sqliteTable("users", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     fullName: text("fullName"),
     email: text("email").unique().notNull(),
-    emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
+    emailVerified: integer("emailVerified", { mode: "timestamp" }),
     image: text("image"),
-    createdAt: integer("createdAt", { mode: "timestamp_ms" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer("updatedAt", { mode: "timestamp_ms" }),
+    createdAt: integer("createdAt", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer("updatedAt", { mode: "timestamp" }),
 });
 const UserSchema = createSelectSchema(users);
 export type UserModel = z.infer<typeof UserSchema>;
@@ -27,8 +27,8 @@ export const usersRelations = relations(users, (params) => ({
 export const roles = sqliteTable("roles", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     name: text("name", { enum: ["user", "admin"] }).notNull().unique(),
-    createdAt: integer("createdAt", { mode: "timestamp_ms" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer("updatedAt", { mode: "timestamp_ms" }),
+    createdAt: integer("createdAt", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer("updatedAt", { mode: "timestamp" }),
 });
 const RoleSchema = createSelectSchema(roles);
 export type RoleModel = z.infer<typeof RoleSchema>;
@@ -41,8 +41,8 @@ export const userRoles = sqliteTable("userRoles", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     userId: integer("userId").references(() => users.id, { onDelete: "cascade" }),
     roleId: integer("roleId").references(() => roles.id, { onDelete: "cascade" }),
-    createdAt: integer("createdAt", { mode: "timestamp_ms" }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer("updatedAt", { mode: "timestamp_ms" }),
+    createdAt: integer("createdAt", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer("updatedAt", { mode: "timestamp" }),
 }, (ur) => ({
     idx_userId: index("idx_userId").on(ur.userId),
     idx_roleId: index("idx_roleId").on(ur.roleId),
