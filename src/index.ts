@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -11,7 +11,7 @@ import {
     json,
     static as staticDir,
 } from "express";
-import env from './utils/env.js';
+import env from "./utils/env.js";
 
 const app: Application = express();
 const PORT: number = env.PORT || 8000;
