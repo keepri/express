@@ -13,8 +13,8 @@ import {
 } from "express";
 import env from "./utils/env.js";
 
+const PORT = env.PORT || 6942 as const;
 const app: Application = express();
-const PORT: number = env.PORT || 8000;
 
 app.use(helmet());
 app.use(morgan(env.NODE_ENV === "development" ? "dev" : "combined"));
