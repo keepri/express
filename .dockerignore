@@ -1,0 +1,12 @@
+node_modules/
+dist/
+__tests__/
+
+.aws/
+.git/
+.gitignore
+
+.DS_Store
+.env.example
+*.log
+README.md
