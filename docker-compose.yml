@@ -1,0 +1,10 @@
+services:
+  express-server:
+    image: node:18-alpine
+    restart: always
+    container_name: express-server
+    ports:
+      - 6942:6942
+    env_file:
+      - .env
+    build: .
