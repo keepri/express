@@ -1,7 +1,7 @@
 {
     "name": "express",
-    "version": "1.0.0",
-    "description": "",
+    "version": "0.1.0",
+    "description": "express server",
     "main": "index.js",
     "type": "module",
     "author": "KIPRI",
@@ -10,12 +10,12 @@
         "build": "tsc",
         "start": "node dist/index.js",
         "dev": "nodemon src/index.ts",
-        "db-push": "drizzle-kit push:sqlite --config=drizzle.config.ts",
-        "db-migrate": "drizzle-kit generate:sqlite --config=drizzle.config.ts",
-        "db-studio": "drizzle-kit studio --port 5556 --verbose",
-        "db-drop": "drizzle-kit drop --config=drizzle.config.ts",
-        "db-up": "drizzle-kit up:sqlite --config=drizzle.config.ts",
-        "db-check": "drizzle-kit check:sqlite --config=drizzle.config.ts"
+        "db:push": "drizzle-kit push:sqlite --config=drizzle.config.ts",
+        "db:migrate": "drizzle-kit generate:sqlite --config=drizzle.config.ts",
+        "db:studio": "drizzle-kit studio --port 5556 --verbose",
+        "db:drop": "drizzle-kit drop --config=drizzle.config.ts",
+        "db:up": "drizzle-kit up:sqlite --config=drizzle.config.ts",
+        "db:check": "drizzle-kit check:sqlite --config=drizzle.config.ts"
     },
     "dependencies": {
         "@libsql/client": "^0.3.1",
