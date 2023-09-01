@@ -22,7 +22,8 @@
         "noImplicitReturns": true,
         "preserveWatchOutput": true,
         "allowJs": true,
-        "checkJs": true
+        "checkJs": true,
+        "skipLibCheck": true
     },
     "include": [
         "src/**/*"
