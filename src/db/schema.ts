@@ -8,6 +8,7 @@ import { createSelectSchema } from "drizzle-zod";
 import { type z } from "zod";
 import { relations, sql } from "drizzle-orm";
 
+// USERS
 export const users = sqliteTable("users", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     fullName: text("fullName"),
@@ -24,6 +25,7 @@ export const usersRelations = relations(users, (params) => ({
     roles: params.many(roles),
 }));
 
+// ROLES
 export const roles = sqliteTable("roles", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     name: text("name", { enum: ["user", "admin"] }).notNull().unique(),
@@ -37,6 +39,7 @@ export const rolesRelations = relations(roles, (params) => ({
     userRoles: params.many(userRoles),
 }));
 
+// USER ROLES
 export const userRoles = sqliteTable("userRoles", {
     id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     userId: integer("userId").references(() => users.id, { onDelete: "cascade" }),

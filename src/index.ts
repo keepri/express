@@ -5,13 +5,13 @@ import morgan from "morgan";
 import { default as cookieParser } from "cookie-parser";
 import {
     type Application,
-    type Response,
     default as express,
     urlencoded,
     json,
     static as staticDir,
 } from "express";
-import env from "./utils/env.js";
+import { env } from "./lib/env.js";
+import { errorHandler } from "./lib/errors.js";
 
 const PORT = env.PORT || 6942 as const;
 const app: Application = express();
@@ -24,8 +24,10 @@ app.use(json());
 app.use(cookieParser(env.COOKIE_SECRET));
 app.use("/static", staticDir("static"));
 
-app.get("/", async (_, res: Response) => {
-    return res.status(200).send("hi");
+app.get('/', (_req, _res, next) => {
+    next(new Error("hi, mark!"));
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));

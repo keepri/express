@@ -13,4 +13,4 @@ const env = createEnv({
     runtimeEnv: process.env,
 });
 
-export default env;
+export { env };
