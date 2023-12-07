@@ -5,7 +5,7 @@ const env = createEnv({
     isServer: true,
     server: {
         NODE_ENV: z.enum(["development", "production"]),
-        PORT: z.coerce.number().optional(),
+        PORT: z.coerce.number().default(6942),
         COOKIE_SECRET: z.string().min(1),
         DATABASE_URL: z.string().min(1),
         DATABASE_AUTH_TOKEN: process.env.NODE_ENV === "production" ? z.string().min(1) : z.string().optional(),
